@@ -26,12 +26,26 @@ class world extends Phaser.Scene {
     this.load.atlas( 'right', 'assets/penguin right.png', 'assets/penguin right.json');
     this.load.atlas( 'front', 'assets/penguin front.png', 'assets/penguin front.json');
     this.load.atlas( 'back', 'assets/penguin back.png', 'assets/penguin back.json');
-  }
-    //enemy
-    //this.load.atlas( 'seal', 'assets/seal left.png', 'assets/seal left.json');
+
+    this.load.image("heart","assets/heart.png");
+}
 
   create() {
     console.log("*** world scene");
+
+    console.log("live:", window.heart);
+    
+    
+  //   if (window.heart == 3){
+  //   this.heart1.setVisible(true);
+  //   this.heart2.setVisible(true);
+  //   this.heart3.setVisible(true);
+  // } else if (window.heart == 2){
+  //   this.heart1.setVisible(true);
+  //   this.heart2.setVisible(true);
+  // } else if (window.heart == 1){
+  //   this.heart1.setVisible(true);
+  // }
 
     //Step 3 - Create the map from main
     let map = this.make.tilemap({key:'world_map_01'}); //or var map 也可以，然后那个key的字，跟着你上面那个step1的world1，要一样的名字！因为是connect的！
@@ -47,15 +61,17 @@ class world extends Phaser.Scene {
     let winter1Tiles = map.addTilesetImage("winter1", "winter1");
     let winter2Tiles = map.addTilesetImage("winter2", "winter2");
 
-
-
     let tilesArray = [ snow1Tiles,snow2Tiles,snow3Tiles,snowspikeTiles,snowtreeTiles,winter1Tiles,winter2Tiles ] //这个是tilesArray是方便你不用下面一个个打出来，直接load完你全部的tileset）（看下一个step）
 
     // Step 5  Load in layers by layers (一层一层加layer，从最底层的layer a.k.a第一个layer开始load进来）
     this.gorundLayer = map.createLayer("gorundLayer", tilesArray, 0, 0); //layer的名字要跟你在tilemap里面取的layer名字一样！，后面tilesArray就是你直接load你的tileset进来了）
     this.treeLayer = map.createLayer("treeLayer", tilesArray, 0, 0);
     this.houseLayer = map.createLayer("houseLayer", tilesArray, 0, 0);
-      
+
+    this.heart1 = this.add.image(70,25,'heart').setScale(0.1).setScrollFactor(0);
+    this.heart2 = this.add.image(110,25,'heart').setScale(0.1).setScrollFactor(0);
+    this.heart3 = this.add.image(150,25,'heart').setScale(0.1).setScrollFactor(0);
+  
     this.anims.create({ //这个是放你character animation的地方
       key: 'left',
       frames: [
@@ -88,8 +104,6 @@ class world extends Phaser.Scene {
       repeat: -1
     })
 
-
-
     this.anims.create({
       key: 'back',
       frames: [
@@ -115,18 +129,6 @@ class world extends Phaser.Scene {
       frameRate: 6,
       repeat: -1
     })
-    // this.anims.create({
-    //   key: 'down',
-    //   frames: [
-    //     { key: 'seal', frame: 'seal_left_05'},
-    //     { key: 'seal', frame: 'seal_left_01'},
-    //     { key: 'seal', frame: 'seal_left_02'},
-    //     { key: 'seal', frame: 'seal_left_03'},
-    //     { key: 'seal', frame: 'seal_left_04'},
-    //   ],
-    //   frameRate: 6,
-    //   repeat: -1
-    // })
 
     this.physics.world.bounds.width = this.gorundLayer.width; //这个应该也是set你character不会跑出去一个地方的，but with layer？不是很确定
     this.physics.world.bounds.height = this.gorundLayer.height;
@@ -143,7 +145,9 @@ class world extends Phaser.Scene {
 
     var start = map.findObject("object",(obj) => obj.name === "start");
 
-    this.player = this.physics.add.sprite(100, 605, 'up');
+    this.player = this.physics.add
+    .sprite(100, 605, "front")
+    .setScale(1.5).setSize(16, 16);
 
     // enable debugging
     window.player = this.player

@@ -7,10 +7,29 @@ class preload extends Phaser.Scene {
     // Put global variable here
   }
 
-  preload() {}
+  preload() {
+    this.load.atlas( 'left', 'assets/penguin left.png', 'assets/penguin left.json'); 
+    this.load.atlas( 'right', 'assets/penguin right.png', 'assets/penguin right.json');
+    this.load.atlas( 'front', 'assets/penguin front.png', 'assets/penguin front.json');
+    this.load.atlas( 'back', 'assets/penguin back.png', 'assets/penguin back.json');
+
+    // penguin get hit sound
+    this.load.audio("penguin_get_hit","assets/music/penguin_get_hit.mp3");
+
+    //collect sound
+    this.load.audio("collectfish","assets/music/collect fish.mp3");
+
+    //background music
+    this.load.audio("bgm","assets/music/bgm.mp3");
+  }
 
   create() {
     console.log("*** preload scene");
+
+    //background_sound
+    this.music = this.sound.add("bgm", {
+      loop: true,
+    }).setVolume(0.3);this.music.play();
 
     // Add any sound and music here
     // ( 0 = mute to 1 is loudest )
@@ -29,10 +48,10 @@ class preload extends Phaser.Scene {
     spaceDown.on(
       "down",
       function () {
-        console.log("Jump to world scene");
+        console.log("Jump to mainpage scene");
 
         this.scene.start(
-          "world",
+          "mainpage",
           // Optional parameters
           {}
         );
