@@ -7,7 +7,7 @@
         default: 'arcade',
         arcade: {
             gravity: false,
-            debug: true
+            debug: false
         }
     },
     scale: {
@@ -16,7 +16,8 @@
     },
     backgroundColor: '#FFFFFF',
     pixelArt: true,
-    scene: [preload, mainpage, storyline, intropage, rules, world, wintermap1, wintermap2, wintermap3, win, gameover]
+    scene: [mainpage, storyline, intropage, rules, world, wintermap1, wintermap2, wintermap3, win, gameover]
+    //preload
 };
 
 var game = new Phaser.Game(config);

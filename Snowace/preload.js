@@ -35,11 +35,6 @@ class preload extends Phaser.Scene {
   create() {
     console.log("*** preload scene");
 
-    //background_sound
-    this.music = this.sound.add("bgm", {
-      loop: true,
-    }).setVolume(0.3);this.music.play();
-
     // Add any sound and music here
     // ( 0 = mute to 1 is loudest )
     //this.music = this.sound.add('bgMusic').setVolume(0.3) // 10% volume
