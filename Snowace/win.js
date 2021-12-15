@@ -31,4 +31,7 @@ class win extends Phaser.Scene {
       },
       this
     );
-    }}
+
+      this.winsound = this.sound.add("win");
+      this.winsound.play();
+  }}

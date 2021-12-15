@@ -31,4 +31,8 @@ class gameover extends Phaser.Scene {
       },
       this
     );
+
+    this.losesound = this.sound.add("lose");
+    this.losesound.play();
+
     }}

@@ -31,4 +31,8 @@ class rules extends Phaser.Scene {
       },
       this
     );
+
+    this.sealsound = this.sound.add("seal");
+      this.sealsound.play();
+
     }}

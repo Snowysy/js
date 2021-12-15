@@ -13,6 +13,15 @@ class preload extends Phaser.Scene {
     this.load.atlas( 'front', 'assets/penguin front.png', 'assets/penguin front.json');
     this.load.atlas( 'back', 'assets/penguin back.png', 'assets/penguin back.json');
 
+    //change screen sound
+    this.load.audio("seal","assets/music/seal.mp3");
+
+    // win game sound
+    this.load.audio("win","assets/music/win.WAV");
+
+    //lose game sound
+    this.load.audio("lose","assets/music/lose.mp3");
+
     // penguin get hit sound
     this.load.audio("penguin_get_hit","assets/music/penguin_get_hit.mp3");
 
